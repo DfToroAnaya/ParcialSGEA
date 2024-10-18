@@ -18,6 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
+    Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
+    Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
+
+
 });
 
 require __DIR__.'/auth.php';

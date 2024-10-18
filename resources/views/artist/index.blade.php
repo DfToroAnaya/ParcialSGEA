@@ -13,6 +13,7 @@
   <body>
     <div class='container'>
     <h1>List of Artist</h1>
+    <a href="{{route('artists.create')}}" class="btn btn-success">Add</a>
     <table class="table">
         <thead>
           <tr>
@@ -28,11 +29,11 @@
             @foreach ($artists as $artist)
           <tr>
             <th scope="row">{{$artist->id}}</th>
-            <td>{{$artist->name . ' ' . $artist->apellido}}</td>
+            <td>{{$artist->nombre . ' ' . $artist->apellido}}</td>
             <td>{{$artist->nacionalidad}}</td>
             <td>{{$artist->biografia}}</td>
             <td><span>Actions</span></td>
-            <td>@mdo</td>
+           
           </tr>
           @endforeach
         </tbody>

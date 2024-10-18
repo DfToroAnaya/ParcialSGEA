@@ -22,7 +22,7 @@ class ArtistController extends Controller
      */
     public function create()
     {
-        //
+        return view('artist.new');
     }
 
     /**
@@ -30,7 +30,14 @@ class ArtistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $artists =new artist();
+        $artists->nombre= $request->name;
+        $artists->apellido=$request->apellido;
+        $artists->nacionalidad=$request->nacionalidad;
+        $artists->biografia = $request->biografia;
+        $artists->save();
+
+        return redirect()->route('artists.index');
     }
 
     /**
