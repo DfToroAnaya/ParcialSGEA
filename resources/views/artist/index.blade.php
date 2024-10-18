@@ -33,6 +33,8 @@
             <td>{{$artist->nacionalidad}}</td>
             <td>{{$artist->biografia}}</td>
             <td>
+              <a href="{{route('artists.edit' , ['artist' =>$artist->id])}}"
+                class="btn btn-info">Edit</a>
             <form action="{{route('artists.destroy', ['artist' => $artist->id])}}"
               method="POST" style="display: inline-block">
             @method('delete')

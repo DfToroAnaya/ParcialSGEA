@@ -53,7 +53,8 @@ class ArtistController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $artists=artist::find($id);
+        return view('artist.edit',['artist'=>$artists]);
     }
 
     /**
@@ -61,7 +62,14 @@ class ArtistController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $artists=artist::find($id);
+        $artists->nombre= $request->name;
+        $artists->apellido=$request->apellido;
+        $artists->nacionalidad=$request->nacionalidad;
+        $artists->biografia = $request->biografia;
+        $artists->save();
+
+        return redirect()->route('artists.index');
     }
 
     /**
