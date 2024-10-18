@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
     Route::post('/artists', [ArtistController::class, 'store'])->name('artists.store');
     Route::get('/artists/create', [ArtistController::class, 'create'])->name('artists.create');
+    Route::delete('/artists/{artist}', [ArtistController::class, 'destroy'])->name('artists.destroy');
 
 
 });

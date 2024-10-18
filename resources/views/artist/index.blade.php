@@ -32,7 +32,14 @@
             <td>{{$artist->nombre . ' ' . $artist->apellido}}</td>
             <td>{{$artist->nacionalidad}}</td>
             <td>{{$artist->biografia}}</td>
-            <td><span>Actions</span></td>
+            <td>
+            <form action="{{route('artists.destroy', ['artist' => $artist->id])}}"
+              method="POST" style="display: inline-block">
+            @method('delete')
+            @csrf
+          <input class="btn btn-danger" type="submit" value="Delete">
+          </form>
+            </td>
            
           </tr>
           @endforeach
