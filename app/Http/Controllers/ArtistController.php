@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\artist;
 use Illuminate\Http\Request;
+use illuminate\Support\Facades\DB;
 
 class ArtistController extends Controller
 {
@@ -11,7 +13,8 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        //
+        $artists=artist::all();
+        return view('artist.index',['artists'=>$artists]);
     }
 
     /**
