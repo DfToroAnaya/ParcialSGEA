@@ -26,7 +26,7 @@ class ExhibitionController extends Controller
     public function create()
     {
         $works=DB::table('works')
-        ->orderBy('obra_id')
+        ->orderBy('artista_id')
         ->get();
         return view('exhibition.index', ['works'=>$works]);
     }
@@ -36,7 +36,21 @@ class ExhibitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exhibitions=new exhibition();
+
+        $exhibitions->obra_id = $request ->obra_id;
+        $exhibitions->fecha_inicio = $request->fecha_inicio;
+        $exhibitions->fecha_fin = $request->fecha_fin;
+        $exhibitions->ubicacion = $request->ubicacion;
+        $exhibitions->nombre_evento = $request->nombre_evento;
+        $exhibitions->save();
+
+        $exhibitions=DB::table('exhibitions')
+       ->join('works','exhibitions.obra_id','=', 'works.obra_id')
+       ->select('exhibitions.*','works.obra_id')
+       ->get();
+        return view('exhibition.index', ['exhibitions'=>$exhibitions]);
+
     }
 
     /**
@@ -60,7 +74,19 @@ class ExhibitionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $exhibitions=exhibition::find($id);
+        $exhibitions->obra_id = $request ->obra_id;
+        $exhibitions->fecha_inicio = $request->fecha_inicio;
+        $exhibitions->fecha_fin = $request->fecha_fin;
+        $exhibitions->ubicacion = $request->ubicacion;
+        $exhibitions->nombre_evento = $request->nombre_evento;
+        $exhibitions->save();
+
+        $exhibitions=DB::table('exhibitions')
+        ->join('works','exhibitions.obra_id','=', 'works.obra_id')
+        ->select('exhibitions.*','works.obra_id')
+        ->get();
+         return view('exhibition.index', ['exhibitions'=>$exhibitions]);
     }
 
     /**
@@ -68,6 +94,13 @@ class ExhibitionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $exhibitions=exhibition::find($id);
+        $exhibitions->delete();
+        
+        $exhibitions=DB::table('exhibitions')
+       ->join('works','exhibitions.obra_id','=', 'works.obra_id')
+       ->select('exhibitions.*','works.obra_id')
+       ->get();
+        return view('exhibition.index', ['exhibitions'=>$exhibitions]);
     }
 }

@@ -13,7 +13,7 @@
   <body>
     <div class="container">
     <h1>List of Exhibition</h1>
-    
+    <a href="{{route('exhibition.create')}}" class="btn btn-success">Add</a>
     <table class="table table-dark table-striped">
         <thead>
           <tr>
@@ -35,7 +35,16 @@
             <td>{{$exhibition->fecha_fin}}</td>
             <td>{{$exhibition->ubicacion}}</td>
             <td>{{$exhibition->nombre_evento}}</td>
-            <td>Actions</td>
+            <td>
+              <a href="{{route('exhibition.edit',['exhibition' =>$exhibition->obra_id])}}"
+                class="btn btn-info">Edit</a>
+              <form action="{{route('exhibition.destroy',['exhibition' => $exhibition->obra_id ])}}"
+                method="POST" style="display: inline-block">
+              @method('delete')
+              @csrf
+              <input class="btn btn-danger" type="submit" value="Delete">
+              </form>
+            </td>
           </tr>
           @endforeach
         </tbody>

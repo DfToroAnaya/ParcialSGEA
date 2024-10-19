@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     //Exposiciones 
     Route::get('/exhibition', [ExhibitionController::class, 'index'])->name('exhibition.index');
     Route::post('/exhibition', [ExhibitionController::class, 'store'])->name('exhibition.store');
+    Route::get('/exhibition/create', [ExhibitionController::class, 'create'])->name('exhibition.create');
+    Route::delete('/exhibition/{{exhibition}}', [ExhibitionController::class, 'destroy'])->name('exhibition.destroy');
+    Route::put('/exhibition/{{exhibition}}', [ExhibitionController::class, 'update'])->name('exhibition.update');
 
 
 
