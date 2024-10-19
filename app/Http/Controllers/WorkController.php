@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\work;
+use Illuminate\Support\Facades\DB;
 
 class WorkController extends Controller
 {
