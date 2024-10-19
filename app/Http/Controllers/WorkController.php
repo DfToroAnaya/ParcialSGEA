@@ -15,7 +15,7 @@ class WorkController extends Controller
     {
         $obras = DB::table('works')
         ->join('artists', 'works.id', '=', 'artists.id')
-        ->select('works.*','artists.artista_id')
+        ->select('works.*','artists.id')
         ->get();
         return view ('obra.index', ['obras' => $obras]);
     }
@@ -25,10 +25,10 @@ class WorkController extends Controller
      */
     public function create()
     {
-        $obras = DB::table('artist')
-        ->orderBy('nombre')
+        $artists = DB::table('artists')
+        ->orderBy('id')
         ->get();
-        return view('obra.new', ['obras' => $obras]);
+        return view('obra.new', ['artists' => $artists]);
     }
 
     /**
@@ -36,16 +36,19 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        $obra = new work();
-        $obra->nombre = $request->name;
-        $obra->id = $request->code;
-        $obra->save();
+        $obras = new work();
+        $obras->artista_id = $request->artista_id;
+        $obras->título=$request->título;
+        $obras->año=$request->año;
+        $obras->dimensiones=$request->dimensiones;
+        $obras->descripcion=$request->descripcion;
+        $obras->save();
 
-        $obra = DB::table('works')
+        $obras = DB::table('works')
         ->join('artists', 'works.id', '=', 'artists.id')
-        ->select('works.*', "artists.nombre")
+        ->select('works.*', "artists.id")
         ->get();
-        return view('obra.index', ['obras' => $obra]);
+        return view('obra.index', ['obras' => $obras]);
     }
 
     /**
@@ -62,10 +65,10 @@ class WorkController extends Controller
     public function edit(string $id)
     {
         $obra = work::find($id);
-        $artistas = DB::table('artists')
-        ->orderBy('nombre')
+        $artists = DB::table('artists')
+        ->orderBy('id')
         ->get();
-        return view('obra.edit', ['obra' =>$obra, 'artistas' => $artistas]);
+        return view('obra.edit', ['obra' =>$obra, 'artists' => $artists]);
     }
 
     /**
@@ -75,13 +78,13 @@ class WorkController extends Controller
     {
         $obra = work::find($id);
 
-        $obra->titulo = $request->name;
+        $obra->título = $request->name;
         $obra->id = $request->code;
         $obra->save();
 
         $obras = DB::table('works')
-        ->join('srtists', 'works.id', '=', 'artists.id')
-        ->select('works.*', "artists.nombre")
+        ->join('artists', 'works.id', '=', 'artists.id')
+        ->select('works.*', "artists.id")
         ->get();
 
         return view('obra.index', ['obras' => $obras]);

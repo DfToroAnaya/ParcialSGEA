@@ -18,15 +18,35 @@
             @method('put')
             @csrf
             <div class="mb-3">
-              <label for="codigo" class="form-label">Id</label>
-              <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id"
-                  disabled="disabled" value="{{ $obra->id}}">
-              <div id="codigoHelp" class="form-text">obra Id</div>
+              <label for="id" class="form-label">Code</label>
+              <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id"
+                  disabled="disabled">
+              <div id="idHelp" class="form-text">Obra code</div>
             </div>
+            
             <div class="mb-3">
-              <label for="name" class="form-label">Obra</label>
-              <input type="text" class="form-control" id="name"  placeholder="Obra name" name="name"
-              value="{{ $obra->título}}">
+              <label for="título" class="form-label">Titulo </label>
+              <input type="text" class="form-control" id="título" aria-describedby="títuloHelp"
+              name="título" placeholder='título name' value="{{$obra->título}}"
+            </div>
+            
+            <div class="mb-3">
+              <label for="año" class="form-label">Año </label>
+              <input type="text" class="form-control" id="año" aria-describedby="añoHelp"
+              name="año" placeholder='Año' value="{{$obra->año}}">
+            </div>
+
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option selected>Open this select menu</option>
+              <option value="1">Largo</option>
+              <option value="2">Ancho</option>
+              <option value="3">Alto</option>
+            </select>
+
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripcion </label>
+              <input type="text" class="form-control" id="descripcion" aria-describedby="descripcionHelp"
+              name="descripcion" placeholder='descripcion' value="{{$obra->descripcion}}">
             </div>
 
             <label for="artist">Artista</label>

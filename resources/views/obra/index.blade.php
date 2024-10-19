@@ -13,14 +13,14 @@
   <body>
     <div class="container">
       <h1>Listado Obras</h1>
-      <a href="{{ route('departamentos.create')}}" class="btn btn-success">Add</a>
+      <a href="{{ route('obras.create')}}" class="btn btn-success">Add</a>
         <table class="table">
             <thead>
               <tr>
                 <th scope="col">Code</th>
                 <th scope="col">Titulo</th>
+                <th scope="col">Artista</th>
                 <th scope="col">Año</th>
-                <th scope="col">Tecnica</th>
                 <th scope="col">Dimensiones</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Actions</th>
@@ -31,15 +31,16 @@
                 <tr>
                     <th scope="row">{{ $obra->id }}</th>
                     <td>{{ $obra->título }}</td>
+                    <td>{{ $obra ->nombre }}</td>
                     <td>{{ $obra ->año }}</td>
                     <td>{{ $obra ->dimensiones }}</td>
-                    <td>{{ $obra ->tecnica }}</td>
+                    
                     <td>{{ $obra ->descripcion }}</td>
                     <td>
-                      <a href="{{route('obras.edit', ['obra' => $obra->id])}}"
+                      <a href="{{route('obra.edit', ['obra' => $obra->id])}}"
                         class="btn btn-info"> Edit </a></li>
 
-                      <form action="{{ route('obras.destroy', ['obra' => $obra->id])}}"
+                      <form action="{{ route('obra.destroy', ['obra' => $obra->id])}}"
                         method="POST" style="display: inline-block">
                       @method('delete')
                       @csrf
