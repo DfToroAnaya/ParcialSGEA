@@ -29,7 +29,8 @@ Route::middleware('auth')->group(function () {
 
 
     //Exposiciones 
-    Route::get('/exhibitions', [ExhibitionController::class, 'index'])->name('exhibitions.index');
+    Route::get('/exhibition', [ExhibitionController::class, 'index'])->name('exhibition.index');
+    Route::post('/exhibition', [ExhibitionController::class, 'store'])->name('exhibition.store');
 
 
 

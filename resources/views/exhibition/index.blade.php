@@ -23,6 +23,7 @@
             <th scope="col">fecha Fin</th>
             <th scope="col">Ubicacion</th>
             <th scope="col">Nombre del Evento</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +35,7 @@
             <td>{{$exhibition->fecha_fin}}</td>
             <td>{{$exhibition->ubicacion}}</td>
             <td>{{$exhibition->nombre_evento}}</td>
+            <td>Actions</td>
           </tr>
           @endforeach
         </tbody>

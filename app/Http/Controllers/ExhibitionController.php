@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\exhibition;
 use Illuminate\Http\Request;
-use illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class ExhibitionController extends Controller
 {
@@ -12,7 +12,11 @@ class ExhibitionController extends Controller
      */
     public function index()
     {
-        $exhibitions=exhibition::all();
+       // $exhibitions=exhibition::all();
+       $exhibitions=DB::table('exhibitions')
+       ->join('works','exhibitions.id','=', 'works.id')
+       ->select('exhibitions.*','works.obra_id')
+       ->get();
         return view('exhibition.index', ['exhibitions'=>$exhibitions]);
     }
 
@@ -21,7 +25,10 @@ class ExhibitionController extends Controller
      */
     public function create()
     {
-        //
+        $works=DB::table('works')
+        ->orderBy('obra_id')
+        ->get();
+        return view('exhibition.index', ['works'=>$works]);
     }
 
     /**
