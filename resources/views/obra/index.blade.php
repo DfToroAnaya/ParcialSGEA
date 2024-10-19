@@ -23,19 +23,23 @@
                 <th scope="col">Tecnica</th>
                 <th scope="col">Dimensiones</th>
                 <th scope="col">Descripcion</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
-                @foreach ($departamentos as $departamento)
+                @foreach ($obras as $obra)
                 <tr>
-                    <th scope="row">{{ $departamento->depa_codi }}</th>
-                    <td>{{ $departamento->depa_nomb }}</td>
-                    <td>{{ $departamento ->pais_nomb }}</td>
+                    <th scope="row">{{ $obra->id }}</th>
+                    <td>{{ $obra->título }}</td>
+                    <td>{{ $obra ->año }}</td>
+                    <td>{{ $obra ->dimensiones }}</td>
+                    <td>{{ $obra ->tecnica }}</td>
+                    <td>{{ $obra ->descripcion }}</td>
                     <td>
-                      <a href="{{route('departamentos.edit', ['departamento' => $departamento->depa_codi])}}"
+                      <a href="{{route('obras.edit', ['obra' => $obra->id])}}"
                         class="btn btn-info"> Edit </a></li>
 
-                      <form action="{{ route('departamentos.destroy', ['departamento' => $departamento->depa_codi])}}"
+                      <form action="{{ route('obras.destroy', ['obra' => $obra->id])}}"
                         method="POST" style="display: inline-block">
                       @method('delete')
                       @csrf
